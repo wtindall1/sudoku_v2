@@ -1,0 +1,24 @@
+Sudoku class:
+
+- private members (use _camelCase):
+    - an empty grid array
+    - a solvable grid array (for development)
+    - empty array of arrays - this will hold solved grids
+- constructor:
+    - set the private members
+
+- getter / setter for the empty grid
+
+- method - GetCell (takes in i and j indices, returns the 3x3 cell containing it)
+- method - GetRow
+- method - GetColumn
+- method- IsPositionValid
+- method - IsGridValid
+- method - SolveSudoku
+- method - CreateCompletedGrid
+- method - Main (this will return the solved and unsolved sudokus
+as strings)
+
+
+To do: 
+1. unit test getrow, getcolumn, getcell methods - might need empty grid get set, & equals function?
