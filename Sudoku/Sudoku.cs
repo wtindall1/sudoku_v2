@@ -41,12 +41,12 @@ public class Sudoku
 
     public int[] GetColumn(int column)
     {
-        return Enumerable.Range(0, _grid.GetLength(0))
+        return Enumerable.Range(0, _grid.GetLength(1))
             .Select(i => _grid[i, column])
             .ToArray();
     }
 
-    //takes in indices of a square, returns the 3x3 grid it is contained in
+    //takes in indices of a square, returns the 3x3 grid it is contained in, as a 2d array
     public int[,] GetCell(int row, int column)
     {
         //find y, x for top left square of the 3x3 cell
