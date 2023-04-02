@@ -95,6 +95,22 @@ public class Sudoku
         
     }
 
+    public bool IsPositionValid(int possibleValue, int row, int column)
+    {
+        //get row
+        int[] selectedRow = this.GetRow(row);
+        //get column
+        int[] selectedColumn = this.GetColumn(column);
+        //get 3x3 cell
+        int[,] selectedCell = this.GetCell(row, column);
+
+        //check if value in row, column or cell
+        return (Array.IndexOf(selectedRow, possibleValue) == -1 &&
+            Array.IndexOf(selectedColumn, possibleValue) == -1 &&
+            Array.IndexOf(selectedCell.Cast<int>().ToArray(), possibleValue) == -1); //cast the cell to int to make it a 1d array)
+
+    }
+
 
 }
 

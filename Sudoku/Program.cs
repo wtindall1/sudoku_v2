@@ -7,8 +7,21 @@ public class Program
         Sudoku puzzle = new Sudoku();
 
         puzzle.PrintGrid();
-        Console.WriteLine(puzzle.GetRow(0));
-        Console.WriteLine(puzzle.GetColumn(0));
+
+        puzzle.grid = new int[,]
+        {
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {1,0,1,0,1,0,1,0,1},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0}
+        };
+
+        Console.WriteLine(puzzle.IsPositionValid(1, 2, 1));
 
     }
 }
