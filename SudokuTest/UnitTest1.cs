@@ -124,7 +124,7 @@ public class SudokuUnitTest
     [TestMethod]
     public void TestIsPositionValidAllowsValidPosition()
     {
-                        //create sudoku object
+        //create sudoku object
         Sudoku testPuzzle = new Sudoku();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
@@ -190,7 +190,7 @@ public class SudokuUnitTest
 
         testPuzzle.SolveSudoku();
 
-        bool IsComplete = testPuzzle.grid.Cast<int>().Any(x => x == 0);
+        bool IsComplete = !testPuzzle.solvedGrids[0].Cast<int>().Any(x => x == 0);
 
         Assert.IsTrue(testPuzzle.IsCurrentGridValid() && IsComplete, "Failed. Grid is Invalid or Incomplete.");
 
@@ -218,7 +218,7 @@ public class SudokuUnitTest
 
         testPuzzle.SolveSudoku();
 
-        bool IsComplete = testPuzzle.grid.Cast<int>().Any(x => x == 0);
+        bool IsComplete = !testPuzzle.solvedGrids[0].Cast<int>().Any(x => x == 0);
 
         Assert.IsTrue(testPuzzle.IsCurrentGridValid() && IsComplete, "Failed. Grid is Invalid or Incomplete.");
     }
@@ -246,5 +246,21 @@ public class SudokuUnitTest
 
         Assert.IsFalse(testPuzzle.solvedGrids.Count >2, "Failed. Solver found more than 2 solutions.");
     }
+
+    [TestMethod]
+    public void TestCreateCompletedMethodCreatesCompleteGrid()
+    {
+        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+
+        testPuzzle.CreateCompleted();
+
+        bool IsComplete = !testPuzzle.grid.Cast<int>().Any(x => x == 0);
+
+        Assert.IsTrue(testPuzzle.IsCurrentGridValid() && IsComplete, $"Failed. Grid is Invalid {testPuzzle.IsCurrentGridValid()} or Incomplete {IsComplete}.");
+
+    }
+
+
 
 }

@@ -186,7 +186,7 @@ public class Sudoku
         //save solved grid and exit out of no positions are empty (solved)
         if (emptyPositionsValidNumbers.Count == 0)
         {
-            this._solvedGrids.Add(this._grid);
+            this._solvedGrids.Add((int[,])this._grid.Clone()); //.Clone() to create shallow copy - passing by reference means backtracking will undo the solve
             return;
         }
 
@@ -216,12 +216,85 @@ public class Sudoku
 
     public void CreateCompleted()
     {
-        return;
+        //randomly assign the values in the top row
+        int[] values = Enumerable.Range(1, 9).ToArray();
+        Random random = new Random();
+        values = values.OrderBy(x => random.Next()).ToArray();
+        for (int i = 0; i < values.Length; i++)
+        {
+            this.grid[0, i] = values[i];
+        }
+
+        //loop until board is full
+        while (true)
+        {
+            //find all empty positions
+            List<(int, int)> emptyPositions = new List<(int, int)>();
+            for (int i=0; i < grid.GetLength(0); i++)
+            {
+                for (int j=0; j < grid.GetLength(1); j++)
+                {
+                    if (grid[i, j] == 0)
+                    {
+                        emptyPositions.Add((i, j));
+                    }
+                }
+            }
+
+            //exit if grid is filled
+            if (emptyPositions.Count == 0)
+            {
+                break;
+            }
+
+            //pick a random row and column
+            Random randomer = new Random();
+            (int, int) randomPosition = emptyPositions.OrderBy(x => randomer.Next()).First();
+            int randomRow = randomPosition.Item1;
+            int randomColumn = randomPosition.Item2;
+
+            //pick a random number for the cell, out of those that are valid
+            int randomValidValue = Enumerable.Range(1, 9)
+                                        .Where(x => this.IsPositionValid(x, randomRow, randomColumn))
+                                        .OrderBy(x => randomer.Next())
+                                        .First();
+            this.grid[randomRow, randomColumn] = randomValidValue;
+
+            //wipe solved grids array
+            this._solvedGrids.Clear();
+
+            //solve and undo change if no valid solution
+            this.SolveSudoku();
+            if (this._solvedGrids.Count == 0)
+            {
+                this.grid[randomRow, randomColumn] = 0;
+            }
+        }
     }
 
-    public void CreatePuzzle()
+    public (string, string) GeneratePuzzle()
     {
-        return;
+        //create completed puzzle - saved in _solvedGrids
+        this.SolveSudoku();
+
+        //make list of all positions
+
+        //while loop
+
+            //remove grid value from a random position (skip to next loop if it's a 0)
+            //make copy of the value
+
+            //wipe the solved grids list
+
+            //solve, then undo the removal if there is no solution or > 1
+
+            //remove the position from the list
+
+            //exit if 17 clues left or all positions tested
+
+        
+        return ("00", "00");
+        //IF THIS IS SLOW, CHECK HOW LONG SOLVER RUNS WHEN THERE IS NO SOLUTION
     }
 }
 

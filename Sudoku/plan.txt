@@ -22,8 +22,9 @@ as strings)
 
 To do: 
 /1. unit test getrow, getcolumn, getcell methods - might need empty grid get set, & equals function?
-2. isposition valid method
-3. is grid valid method
-4. Backtracking solve algorithm
-5. create completed grid
-6. main
+/2. isposition valid method
+/3. is grid valid method
+/4. Backtracking solve algorithm
+/5. create completed grid 
+/6. cut down to valid puzzle
+7. main
