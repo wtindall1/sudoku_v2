@@ -6,14 +6,26 @@ public class Sudoku
     private int[,] _grid = new int[9, 9];
     private int[,] _devGrid = new int[9, 9]; //to use before solver is finished
 
-    private int[,] _solvedGrids = new int[9, 9];
+    private List<int[,]> _solvedGrids = new List<int[,]>();
 
     //setter for _grid
     public int[,] grid
     {
+        get
+        {
+            return this._grid;
+        }
         set
         {
             this._grid = value;
+        }
+    }
+
+    public List<int[,]> solvedGrids
+    {
+        get
+        {
+            return this._solvedGrids;
         }
     }
 
@@ -111,6 +123,105 @@ public class Sudoku
 
     }
 
+    public bool IsCurrentGridValid() //this is more to help with testing
+    {
+        //loop through each non 0 value
+        for (int i=0; i < _grid.GetLength(0); i++)
+        {
+            for (int j=0; j < _grid.GetLength(1); j++)
+            {
+                if (_grid[i, j] != 0)
+                {
+                    //store a copy of the value
+                    int temp = _grid[i,j];
+                    //temporarily set to 0 so only a duplicate will be found
+                    _grid[i,j] = 0;
+                    //check that the value is allowed
+                    if (!IsPositionValid(temp, i, j))
+                    {
+                        return false;
+                    };
+                    //restore the grid value
+                    _grid[i,j] = temp;
+                }
+            }
+        }
 
+        //if none of the values were an issue, return true
+        return true;
+
+
+
+
+    }
+    public void SolveSudoku()
+
+    {
+        
+        //exit out if found >1 solution
+        if (_solvedGrids.Count > 1)
+        {
+            return;
+        }
+
+        //create a dict, keys = empty positions, values = array of possible values for each position
+        Dictionary<(int, int), int[]> emptyPositionsValidNumbers = new Dictionary<(int, int), int[]>();
+        for (int i=0; i < _grid.GetLength(0); i++)
+        {
+            for (int j=0; j < _grid.GetLength(1); j++)
+            {
+                //only use empty positions
+                if (_grid[i, j] == 0)
+                {
+                    //tuple with row and column indices
+                    (int, int) key = (i, j);
+                    //create array with all numbers valid in that position
+                    int[] validNumbers = Enumerable.Range(1, 9).Where(x => IsPositionValid(x, i, j)).ToArray();
+                    emptyPositionsValidNumbers.Add(key, validNumbers);
+                }
+
+            }
+        }
+
+        //save solved grid and exit out of no positions are empty (solved)
+        if (emptyPositionsValidNumbers.Count == 0)
+        {
+            this._solvedGrids.Add(this._grid);
+            return;
+        }
+
+        //get the position with least possible positions
+        var positionWithLeastValidNumbers = emptyPositionsValidNumbers.OrderBy(x => x.Value.Length).First();
+        int row = positionWithLeastValidNumbers.Key.Item1;
+        int column = positionWithLeastValidNumbers.Key.Item2;
+
+        //for that position, loop throug the valid numbers
+        foreach (int i in positionWithLeastValidNumbers.Value)
+        {
+            //set the empty position to a valid number
+            this._grid[row, column] = i;
+
+            //recursive call to chekc if the assigned number leads to a solution
+            this.SolveSudoku();
+
+            //backtracking step
+            this._grid[row, column] = 0;
+        }
+
+        //return to backtrack if none of the valid numbers led to a solution
+        return;
+
+
+    }
+
+    public void CreateCompleted()
+    {
+        return;
+    }
+
+    public void CreatePuzzle()
+    {
+        return;
+    }
 }
 

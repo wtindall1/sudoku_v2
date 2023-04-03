@@ -96,4 +96,155 @@ public class SudokuUnitTest
 
         Assert.IsTrue(testCell.Cast<int>().SequenceEqual(sudokuCell.Cast<int>()), "Failed. Incorrect cell retrieved.");
     }
+
+    [TestMethod]
+    public void TestIsPositionValidIdentifiesInvalidPosition()
+    {
+                        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+        //set sudoku grid to one of the row 1s
+        int[,] testGrid =
+        {
+            {0,0,0,0,0,0,1,2,3},
+            {0,0,0,0,0,0,4,5,6},
+            {0,0,0,0,0,0,7,8,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0}
+        };
+        testPuzzle.grid = testGrid;
+
+        Assert.IsFalse(testPuzzle.IsPositionValid(4, 2, 8), "Incorrect, value present in row, cell or column");
+        
+    }
+
+    [TestMethod]
+    public void TestIsPositionValidAllowsValidPosition()
+    {
+                        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+        //set sudoku grid to one of the row 1s
+        int[,] testGrid =
+        {
+            {0,0,0,0,0,0,1,2,3},
+            {0,0,0,0,0,0,4,5,6},
+            {0,0,0,0,0,0,7,8,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0}
+        };
+        testPuzzle.grid = testGrid;
+
+        Assert.IsTrue(testPuzzle.IsPositionValid(9, 2, 8), "Incorrect, value present in row, cell or column");
+    }
+
+    [TestMethod]
+    public void TestIsCurrentGridValidIdentifiesInvalidGrid()
+    {
+        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+        //set sudoku grid to one of the row 1s
+        int[,] testGrid =
+        {
+            {1,0,0,2,6,0,7,0,1},
+            {6,8,0,0,7,0,0,9,0},
+            {1,9,0,0,0,4,5,0,0},
+            {8,2,0,1,0,0,0,4,0},
+            {0,0,4,6,0,2,9,0,0},
+            {0,5,0,0,0,3,0,2,8},
+            {0,0,9,3,0,0,0,7,4},
+            {0,4,0,0,5,0,0,3,6},
+            {7,0,3,0,1,8,0,0,0}
+        };
+        testPuzzle.grid = testGrid;
+
+        Assert.IsFalse(testPuzzle.IsCurrentGridValid());
+
+    }
+
+    [TestMethod]
+    public void TestSolverSolvesEasySudoku()
+    {
+        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+        //set sudoku grid to one of the row 1s
+        int[,] testGrid =
+        {
+            {0,0,0,2,6,0,7,0,1},
+            {6,8,0,0,7,0,0,9,0},
+            {1,9,0,0,0,4,5,0,0},
+            {8,2,0,1,0,0,0,4,0},
+            {0,0,4,6,0,2,9,0,0},
+            {0,5,0,0,0,3,0,2,8},
+            {0,0,9,3,0,0,0,7,4},
+            {0,4,0,0,5,0,0,3,6},
+            {7,0,3,0,1,8,0,0,0}
+        };
+        testPuzzle.grid = testGrid;
+
+        testPuzzle.SolveSudoku();
+
+        bool IsComplete = testPuzzle.grid.Cast<int>().Any(x => x == 0);
+
+        Assert.IsTrue(testPuzzle.IsCurrentGridValid() && IsComplete, "Failed. Grid is Invalid or Incomplete.");
+
+    }
+
+
+    [TestMethod]
+    public void TestSolverSolvesEmptySudoku()
+    {
+        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+        int[,] testGrid =
+        {
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0}
+        };
+        testPuzzle.grid = testGrid;
+
+        testPuzzle.SolveSudoku();
+
+        bool IsComplete = testPuzzle.grid.Cast<int>().Any(x => x == 0);
+
+        Assert.IsTrue(testPuzzle.IsCurrentGridValid() && IsComplete, "Failed. Grid is Invalid or Incomplete.");
+    }
+
+    [TestMethod]
+    public void TestSolverStopsAfterTwoSolutions()
+    {
+        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
+        int[,] testGrid =
+        {
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0}
+        };
+        testPuzzle.grid = testGrid;
+
+        testPuzzle.SolveSudoku();
+
+        Assert.IsFalse(testPuzzle.solvedGrids.Count >2, "Failed. Solver found more than 2 solutions.");
+    }
+
 }
