@@ -1,3 +1,17 @@
+INITIAL BUILD DONE
+
+Part 2:
+- Work out why it is slow sometimes - use a Profiler
+- Create API
+- Create Frontend
+
+
+
+
+
+
+
+
 Sudoku class:
 
 - private members (use _camelCase):
