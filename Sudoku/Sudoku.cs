@@ -339,6 +339,9 @@ public class Sudoku
             //exit if 17 clues left or all positions tested
             if (positions.Count == 0)
             {
+                //wipe the solved grids and resolve, so we only have the final unique solution
+                this._solvedGrids.Clear();
+                this.SolveSudoku();
                 break;
             }
         }
@@ -349,7 +352,6 @@ public class Sudoku
         StringBuilder stringBuilderStart = new StringBuilder();
         StringBuilder stringBuilderComplete = new StringBuilder();
         int[,] solvedSudokuArray = solvedGrids[0];
-
 
         for (int i=0; i < grid.GetLength(0); i++)
         {

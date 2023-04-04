@@ -264,19 +264,49 @@ public class SudokuUnitTest
     [TestMethod]
     public void TestGeneratePuzzleMethodCreatesSolvableSudoku()
     {
-        //convert unsolved and solved strings back to 2d arrays
+        //create sudoku object
+        Sudoku testPuzzle = new Sudoku();
 
+        //convert unsolved and solved strings back to 2d arrays
+        int index = 0;
+        var (unsolved, solved) = testPuzzle.GeneratePuzzle();
+        int [,] solvedGrid = new int[9,9];
+
+        for (int i=0; i < 9; i++)
+        {
+            for (int j=0; j < 9; j++)
+            {
+                testPuzzle.grid[i, j] = unsolved[index];
+                solvedGrid[i,j] = (int)unsolved[index];
+                index++;
+            }
+        }
+
+        //clear solved grids
+        testPuzzle.solvedGrids.Clear();
         //solve the unsolved
+        testPuzzle.SolveSudoku();
 
         //check if the solution is equal to the solved string array
+        Assert.IsTrue(solvedGrid.Cast<int>().SequenceEqual(testPuzzle.solvedGrids[0].Cast<int>()));
 
 
     }
 
     [TestMethod]
-    public void TestSolutionIsUnique()
+    public void TestGeneratePuzzleSolutionIsUnique()
     {
-        //check only one solution found when puzzle generate runs
+        
+        Sudoku testPuzzle = new Sudoku();        
+        testPuzzle.GeneratePuzzle();
+
+        Console.WriteLine(testPuzzle.solvedGrids.Count);
+
+        Assert.IsTrue(testPuzzle.solvedGrids.Count == 1, "Failed, a unique solution was not given.");
+
+
+
+
     }
 
 

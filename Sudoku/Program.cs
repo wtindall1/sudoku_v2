@@ -8,7 +8,5 @@ public class Program
 
         Console.WriteLine(puzzle.GeneratePuzzle());
 
-
-
     }
 }
