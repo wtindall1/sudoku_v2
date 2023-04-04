@@ -1,5 +1,9 @@
 ﻿namespace SudokuObject;
 
+using System.Linq;
+using System.Collections.Generic;
+using System.Text;
+
 public class Sudoku
 {
     //private member data
@@ -154,6 +158,25 @@ public class Sudoku
 
 
     }
+    
+    //returns List of value tuples, with (row, column) of empty positions in this.grid
+    public List<(int, int)> GetEmptyPositionsList()
+    {
+        //find all empty positions
+        List<(int, int)> emptyPositions = new List<(int, int)>();
+        for (int i=0; i < grid.GetLength(0); i++)
+        {
+            for (int j=0; j < grid.GetLength(1); j++)
+            {
+                if (grid[i, j] == 0)
+                {
+                    emptyPositions.Add((i, j));
+                }
+            }
+        }
+
+        return emptyPositions;
+    }
     public void SolveSudoku()
 
     {
@@ -229,17 +252,7 @@ public class Sudoku
         while (true)
         {
             //find all empty positions
-            List<(int, int)> emptyPositions = new List<(int, int)>();
-            for (int i=0; i < grid.GetLength(0); i++)
-            {
-                for (int j=0; j < grid.GetLength(1); j++)
-                {
-                    if (grid[i, j] == 0)
-                    {
-                        emptyPositions.Add((i, j));
-                    }
-                }
-            }
+            List<(int, int)> emptyPositions = GetEmptyPositionsList();
 
             //exit if grid is filled
             if (emptyPositions.Count == 0)
@@ -274,26 +287,80 @@ public class Sudoku
 
     public (string, string) GeneratePuzzle()
     {
-        //create completed puzzle - saved in _solvedGrids
-        this.SolveSudoku();
+        //create completed puzzle - this._grid
+        this.CreateCompleted();
 
-        //make list of all positions
+        //random outside loop so not created each time
+        Random random = new Random();
+
+        //make list of all filled positions
+        List<(int, int)> positions = new List<(int, int)>();
+        for (int i=0; i < grid.GetLength(0); i++)
+        {
+            for (int j=0; j < grid.GetLength(1); j++)
+            {
+                if(grid[i,j] != 0)
+                {
+                    positions.Add((i, j));
+                }
+            }
+        }
 
         //while loop
+        while (true)
+        {            
 
-            //remove grid value from a random position (skip to next loop if it's a 0)
-            //make copy of the value
+
+
+            //pick a random position (skip to next loop if it's a 0)
+            (int, int) randomPosition = positions.OrderBy(x => random.Next()).First();
+            // Console.WriteLine(randomPosition);
+            int randomRow = randomPosition.Item1;
+            int randomColumn = randomPosition.Item2;
+            
+            //make a copy of the value & remove the value
+            int temp = this.grid[randomRow, randomColumn];
+            this.grid[randomRow, randomColumn] = 0;
 
             //wipe the solved grids list
+            this._solvedGrids.Clear();
+
 
             //solve, then undo the removal if there is no solution or > 1
+            this.SolveSudoku();
+            if (this.solvedGrids.Count != 1)
+            {
+                this.grid[randomRow, randomColumn] = temp;
+            }
 
             //remove the position from the list
+            positions.Remove(randomPosition);
 
             //exit if 17 clues left or all positions tested
+            if (positions.Count == 0)
+            {
+                break;
+            }
+        }
 
+        //at this point this.grid should be a prepared sudoku
+        //and the first item in solvedGrids should be the solved version
+        //return both of these as 81 character strings
+        StringBuilder stringBuilderStart = new StringBuilder();
+        StringBuilder stringBuilderComplete = new StringBuilder();
+        int[,] solvedSudokuArray = solvedGrids[0];
+
+
+        for (int i=0; i < grid.GetLength(0); i++)
+        {
+            for (int j=0; j < grid.GetLength(1); j++)
+            {
+                stringBuilderStart.Append(grid[i, j].ToString());
+                stringBuilderComplete.Append(solvedSudokuArray[i, j].ToString());
+            }
+        }
         
-        return ("00", "00");
+        return (stringBuilderStart.ToString(), stringBuilderComplete.ToString());
         //IF THIS IS SLOW, CHECK HOW LONG SOLVER RUNS WHEN THERE IS NO SOLUTION
     }
 }

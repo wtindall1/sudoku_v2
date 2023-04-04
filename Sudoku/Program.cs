@@ -6,22 +6,9 @@ public class Program
     {
         Sudoku puzzle = new Sudoku();
 
-        puzzle.PrintGrid();
+        Console.WriteLine(puzzle.GeneratePuzzle());
 
-        puzzle.grid = new int[,]
-        {
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0}
-        };
 
-        puzzle.SolveSudoku();
 
     }
 }

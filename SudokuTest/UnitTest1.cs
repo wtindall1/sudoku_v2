@@ -261,6 +261,25 @@ public class SudokuUnitTest
 
     }
 
+    [TestMethod]
+    public void TestGeneratePuzzleMethodCreatesSolvableSudoku()
+    {
+        //convert unsolved and solved strings back to 2d arrays
+
+        //solve the unsolved
+
+        //check if the solution is equal to the solved string array
+
+
+    }
+
+    [TestMethod]
+    public void TestSolutionIsUnique()
+    {
+        //check only one solution found when puzzle generate runs
+    }
+
+
 
 
 }
