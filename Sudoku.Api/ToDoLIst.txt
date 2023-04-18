@@ -1,0 +1,6 @@
+/1 - sudoku model
+/2 - sudoku response contract
+/3 - ApiEndpoints
+4 - SudokuController
+5 - contract mapping from sudoku to response
+6 - references from api to application & contracts

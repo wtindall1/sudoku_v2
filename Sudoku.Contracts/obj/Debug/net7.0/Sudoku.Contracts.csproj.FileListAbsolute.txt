@@ -1,0 +1,12 @@
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\bin\Debug\net7.0\Sudoku.Contracts.deps.json
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\bin\Debug\net7.0\Sudoku.Contracts.dll
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\bin\Debug\net7.0\Sudoku.Contracts.pdb
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.csproj.AssemblyReference.cache
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.AssemblyInfoInputs.cache
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.AssemblyInfo.cs
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.dll
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\refint\Sudoku.Contracts.dll
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\Sudoku.Contracts.pdb
+C:\Users\Will.Tindall\Desktop\CsharpProjects\SudokuProject\Sudoku.Contracts\obj\Debug\net7.0\ref\Sudoku.Contracts.dll

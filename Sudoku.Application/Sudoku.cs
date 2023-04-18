@@ -1,10 +1,10 @@
-﻿namespace SudokuObject;
+﻿namespace Sudoku.Application;
 
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
-public class Sudoku
+public class SudokuPuzzle
 {
     //private member data
     private int[,] _grid = new int[9, 9];

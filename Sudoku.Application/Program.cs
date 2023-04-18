@@ -1,10 +1,10 @@
-using SudokuObject;
+using Sudoku.Application;
 
 public class Program
 {
     public static void Main()
     {
-        Sudoku puzzle = new Sudoku();
+        var puzzle = new SudokuPuzzle();
 
         Console.WriteLine(puzzle.GeneratePuzzle());
 

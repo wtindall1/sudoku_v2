@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Sudoku.Api",
+    "\\Sudoku.Api\\Controllers",
+    "\\Sudoku.Application",
+    "\\Sudoku.Application\\Models",
+    "\\Sudoku.Contracts",
+    "\\Sudoku.Contracts\\Responses"
   ],
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\Sudoku.Api\\Sudoku.Api.csproj",
+  "PreviewInSolutionExplorer": true
 }
