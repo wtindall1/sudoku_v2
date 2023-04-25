@@ -1,5 +1,5 @@
 namespace SudokuTest;
-using SudokuObject;
+using Sudoku.Application;
 using System.Linq;
 
 [TestClass]
@@ -9,7 +9,7 @@ public class SudokuUnitTest
     public void TestGetRow()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -38,7 +38,7 @@ public class SudokuUnitTest
     public void TestGetColumn()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -67,7 +67,7 @@ public class SudokuUnitTest
     public void TestGetCell()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -101,7 +101,7 @@ public class SudokuUnitTest
     public void TestIsPositionValidIdentifiesInvalidPosition()
     {
                         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -125,7 +125,7 @@ public class SudokuUnitTest
     public void TestIsPositionValidAllowsValidPosition()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -148,7 +148,7 @@ public class SudokuUnitTest
     public void TestIsCurrentGridValidIdentifiesInvalidGrid()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -169,10 +169,10 @@ public class SudokuUnitTest
     }
 
     [TestMethod]
-    public void TestSolverSolvesEasySudoku()
+    public void TestSolverSolvesEasySudokuPuzzle()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         //set sudoku grid to one of the row 1s
         int[,] testGrid =
         {
@@ -198,10 +198,10 @@ public class SudokuUnitTest
 
 
     [TestMethod]
-    public void TestSolverSolvesEmptySudoku()
+    public void TestSolverSolvesEmptySudokuPuzzle()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         int[,] testGrid =
         {
             {0,0,0,0,0,0,0,0,0},
@@ -227,7 +227,7 @@ public class SudokuUnitTest
     public void TestSolverStopsAfterTwoSolutions()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
         int[,] testGrid =
         {
             {0,0,0,0,0,0,0,0,0},
@@ -251,7 +251,7 @@ public class SudokuUnitTest
     public void TestCreateCompletedMethodCreatesCompleteGrid()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
 
         testPuzzle.CreateCompleted();
 
@@ -259,13 +259,13 @@ public class SudokuUnitTest
 
         Assert.IsTrue(testPuzzle.IsCurrentGridValid() && IsComplete, $"Failed. Grid is Invalid {testPuzzle.IsCurrentGridValid()} or Incomplete {IsComplete}.");
 
-    }
 
+    }
     [TestMethod]
-    public void TestGeneratePuzzleMethodCreatesSolvableSudoku()
+    public void TestGeneratePuzzleMethodCreatesSolvableSudokuPuzzle()
     {
         //create sudoku object
-        Sudoku testPuzzle = new Sudoku();
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();
 
         //convert unsolved and solved strings back to 2d arrays
         int index = 0;
@@ -297,7 +297,7 @@ public class SudokuUnitTest
     public void TestGeneratePuzzleSolutionIsUnique()
     {
         
-        Sudoku testPuzzle = new Sudoku();        
+        SudokuPuzzle testPuzzle = new SudokuPuzzle();        
         testPuzzle.GeneratePuzzle();
 
         Console.WriteLine(testPuzzle.solvedGrids.Count);

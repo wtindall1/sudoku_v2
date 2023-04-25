@@ -261,15 +261,14 @@ public class SudokuPuzzle
             }
 
             //pick a random row and column
-            Random randomer = new Random();
-            (int, int) randomPosition = emptyPositions.OrderBy(x => randomer.Next()).First();
+            (int, int) randomPosition = emptyPositions.OrderBy(x => random.Next()).First();
             int randomRow = randomPosition.Item1;
             int randomColumn = randomPosition.Item2;
 
             //pick a random number for the cell, out of those that are valid
             int randomValidValue = Enumerable.Range(1, 9)
                                         .Where(x => this.IsPositionValid(x, randomRow, randomColumn))
-                                        .OrderBy(x => randomer.Next())
+                                        .OrderBy(x => random.Next())
                                         .First();
             this.grid[randomRow, randomColumn] = randomValidValue;
 

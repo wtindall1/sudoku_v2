@@ -4,10 +4,10 @@
     "\\Sudoku.Api",
     "\\Sudoku.Api\\Controllers",
     "\\Sudoku.Application",
-    "\\Sudoku.Application\\Models",
-    "\\Sudoku.Contracts",
-    "\\Sudoku.Contracts\\Responses"
+    "\\Sudoku.Application.Tests",
+    "\\Sudoku.Application\\bin",
+    "\\Sudoku.Application\\Models"
   ],
-  "SelectedNode": "\\Sudoku.Api\\Sudoku.Api.csproj",
+  "SelectedNode": "\\Sudoku.Application.Tests\\UnitTest1.cs",
   "PreviewInSolutionExplorer": true
 }
