@@ -4,9 +4,12 @@ public class Program
 {
     public static void Main()
     {
-        var puzzle = new SudokuPuzzle();
+        var puzzle = new SudokuPuzzle(difficulty: "easy");
 
-        Console.WriteLine(puzzle.GeneratePuzzle());
+        (string, string) result = puzzle.GeneratePuzzle();
+
+        Console.WriteLine(result);
+        Console.WriteLine(result.Item1.Where(x => x!='0').Count());
 
     }
 }

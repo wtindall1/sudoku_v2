@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "haDcwJb+q3HEd2a7Ty5KM7WyVeT5ptb5vR5y9AnNfspF20lC546qwl05ABZHp88xbE7Imh8yt95micEu7njjfQ==",
+  "dgSpecHash": "30nRRgFHA+ThWkVxJRECa+Xc6SNNs/6U4MvnpqXZWnSkqpyXdJkSF30sZvpyn7zYNXVp3FpiBu7qBJObCy2oDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Will.Tindall\\Desktop\\CsharpProjects\\SudokuProject\\Sudoku.Application\\Sudoku_Csharp.csproj",
+  "projectFilePath": "C:\\Users\\Will.Tindall\\Projects\\Sudoku_Project\\Sudoku.Application\\Sudoku_Csharp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

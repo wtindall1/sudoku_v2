@@ -5,7 +5,28 @@ using System.Collections.Generic;
 using System.Text;
 
 public class SudokuPuzzle
+
+    
 {
+    private int minClues;
+
+    public SudokuPuzzle(string difficulty)
+    {
+        //min number of clues for each difficulty
+        switch (difficulty.ToLower())
+        {
+            case "easy":
+                this.minClues = 45;
+                break;
+            case "medium":
+                this.minClues = 36;
+                break;
+            case "hard":
+                this.minClues = 17;
+                break;
+        }
+    }
+
     //private member data
     private int[,] _grid = new int[9, 9];
     private int[,] _devGrid = new int[9, 9]; //to use before solver is finished
@@ -335,8 +356,8 @@ public class SudokuPuzzle
             //remove the position from the list
             positions.Remove(randomPosition);
 
-            //exit if 17 clues left or all positions tested
-            if (positions.Count == 0)
+            //exit if min number of clues left
+            if (positions.Count == this.minClues)
             {
                 //wipe the solved grids and resolve, so we only have the final unique solution
                 this._solvedGrids.Clear();
