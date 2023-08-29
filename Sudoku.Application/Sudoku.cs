@@ -383,7 +383,6 @@ public class SudokuPuzzle
         }
         
         return (stringBuilderStart.ToString(), stringBuilderComplete.ToString());
-        //IF THIS IS SLOW, CHECK HOW LONG SOLVER RUNS WHEN THERE IS NO SOLUTION
     }
 }
 
